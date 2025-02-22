@@ -15,7 +15,8 @@ export class TextSync{
         break
 
       case "html":
-        Asset.iframe.contentDocument.body.innerHTML = Asset.inner_textarea
+        // Asset.iframe.contentDocument.body.innerHTML = Asset.inner_textarea
+        Asset.iframe_root.innerHTML = Asset.inner_textarea
         break
     }
     this.save_storage()

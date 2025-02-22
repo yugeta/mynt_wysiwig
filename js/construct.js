@@ -6,26 +6,23 @@ import { Event }   from "./event.js"
 import { Setting } from "./setting.js"
 import { Cache }   from "./cache.js"
 
-class Main{
-  constructor(){
+export class Construct{
+  constructor(options){
+    // Asset.options = options
+    new Asset(options)
+
     if(!Asset.root){
       console.warn("Not Element. div#MYNT_wysiwig")
       return;
     }
-    new Css()
-    new Iframe()
-    new Control().promise.then(()=>{
-      new Setting({mode:"inide"})
-    })
-    new Event()
-    new Cache()
-  }
-}
 
-switch(document.readyState){
-  case "complete":
-  case "interactive":
-    new Main();break
-  default:
-    window.addEventListener("DOMContentLoaded", (()=>new Main()))
+    new Css()
+    new Iframe().promise.then(()=>{
+      new Event()
+      new Cache()
+    })
+    new Control().promise.then(()=>{
+      new Setting()
+    })
+  }
 }

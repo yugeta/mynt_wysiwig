@@ -10,10 +10,13 @@ export class Event{
 
   set_event(){
     window.addEventListener("click" , this.click_window.bind(this))
+
     if(Asset.iframe){
-      Asset.iframe.contentDocument.body.addEventListener("input" , this.input.bind(this))
-      Asset.iframe.contentDocument.body.addEventListener("selectstart" , this.iframe_select_start.bind(this))
+      Asset.iframe.contentWindow.addEventListener("click", this.click_window.bind(this))
+      Asset.iframe_root.addEventListener("input" , this.input.bind(this))
+      Asset.iframe_root.addEventListener("selectstart" , this.iframe_select_start.bind(this))
     }
+
     if(Asset.textarea){
       Asset.textarea.addEventListener("keydown" , this.keydown.bind(this))
       Asset.textarea.addEventListener("input" , this.input.bind(this))
@@ -21,14 +24,28 @@ export class Event{
   }
 
   click_window(e){
-    // プルダウンメニュー
+    // プルダウンメニュー（リストをクリックした時の挙動）
     if(e.target.closest(".pulldown-list label")){
       const pulldown_list = e.target.closest(".pulldown-list")
       const li = pulldown_list.closest("li")
+
+      // リストを閉じる
       const checkbox = li.querySelector(`label.click-view-list input[type="checkbox"]`)
       checkbox.checked = false
-      const name = e.target.closest("label").className
-      Setting.save({input_type: name})
+
+      // 
+      const name  = li.getAttribute("data-name")
+      const value = e.target.closest("label").getAttribute("value")
+      switch(name){
+        case "input_types":
+          Setting.save({input_type: value})
+          break
+        case "font_size":
+        case "paragraph":
+          new Apply(name, value)
+          break
+      }
+      
     }
 
     // ツールボタン
@@ -36,6 +53,15 @@ export class Event{
       const target = e.target.closest("ul.control > li")
       const name = target.getAttribute("data-name")
       new Apply(name)
+    }
+
+    // リスト表示ボタン
+    if(e.target.closest(`.click-view-list`)
+    && e.target.closest(`[name="list_view"]`)
+    && e.target.closest(`[name="list_view"]`).checked === true){
+      const li = e.target.closest("li")
+      const name = li.getAttribute("data-name")
+      this.list_view_selected(li, name)
     }
 
 
@@ -78,6 +104,36 @@ export class Event{
 
   iframe_select_start(e){
     Asset.current_iframe_select_start = e.target
-    Asset.current_iframe_select_parent_tag = e.target.parentNode
+  }
+
+  // control-pulldownListの選択処理
+  list_view_selected(li, name){
+    if(Asset.current_input_type === "wysiwig"){
+      switch(name){
+        case "font_size":
+          const target_tag = Asset.get_iframe_select_start_tag("span")
+          if(target_tag){
+            const value = target_tag.style.getPropertyValue("font-size")
+            this.select_list_item(li, value)
+          }
+          else{
+            this.select_list_item(li, "")
+          }
+        break
+      }
+    }
+  }
+
+  select_list_item(li, value){
+    const lists = li.querySelectorAll(`.pulldown-list > *`)
+    if(!lists){return}
+    for(const list of lists){
+      if(list.getAttribute("value") === value){
+        list.setAttribute("data-status" , "selected")
+      }
+      else if(list.hasAttribute("data-status")){
+        list.removeAttribute("data-status")
+      }
+    }
   }
 }

@@ -9,25 +9,45 @@
       <svg class="html" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>
     </label>
     <div class="pulldown-list">
-      <label class="html" for="input_html">
+      <label value="html" for="input_html">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M320-240 80-480l240-240 57 57-184 184 183 183-56 56Zm320 0-57-57 184-184-183-183 56-56 240 240-240 240Z"/></svg>
         <p>HTML編集</p>
       </label>
-      <label class="wysiwig" for="input_wysiwig">
+      <label value="wysiwig" for="input_wysiwig">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></svg>
         <p>WYSIWIG編集</p>
       </label>
     </div>
   </li>
 
-  <li data-name="font_size">
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-160v-520H80v-120h520v120H400v520H280Zm360 0v-320H520v-120h360v120H760v320H640Z"/></svg>
+  <li class="common" data-name="font_size">
+    <label class="click-view-list">
+      <input type="checkbox" name="list_view" hidden>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M280-160v-520H80v-120h520v120H400v520H280Zm360 0v-320H520v-120h360v120H760v320H640Z"/></svg>
+    </label>
+    <div class="pulldown-list">
+      <label value="0.6em">-2 最小</label>
+      <label value="0.8em">-1 小</label>
+      <label value=""> 0 標準</label>
+      <label value="1.2em">+1 中</label>
+      <label value="1.6em">+2 大</label>
+      <label value="2em">+3 最大</label>
+    </div>
   </li>
 
-  <li data-name="paragraph">
-    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" height="24px" width="24px">
-      <path d="M 10 10.003 L 7.046 10.003 C 3.354 10.003 3.354 4.095 7.046 4.095 L 10 4.095 L 10 10.003 Z M 7.046 2.618 C 1.138 2.618 1.138 11.48 7.046 11.48 L 10 11.48 L 10 17.388 L 11.477 17.388 L 11.477 4.095 L 12.954 4.095 L 12.954 17.388 L 14.431 17.388 L 14.431 4.095 L 17.385 4.095 L 17.385 2.618 L 7.046 2.618 Z" id="paragraph-[#670]"></path>
-    </svg>
+  <li class="common" data-name="paragraph">
+    <label class="click-view-list">
+      <input type="checkbox" name="list_view" hidden>
+      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" height="24px" width="24px"><path d="M 10 10.003 L 7.046 10.003 C 3.354 10.003 3.354 4.095 7.046 4.095 L 10 4.095 L 10 10.003 Z M 7.046 2.618 C 1.138 2.618 1.138 11.48 7.046 11.48 L 10 11.48 L 10 17.388 L 11.477 17.388 L 11.477 4.095 L 12.954 4.095 L 12.954 17.388 L 14.431 17.388 L 14.431 4.095 L 17.385 4.095 L 17.385 2.618 L 7.046 2.618 Z" id="paragraph-[#670]"></path></svg>
+    </label>
+    <div class="pulldown-list">
+      <label value="h1">H1 主見出し</label>
+      <label value="h2">H2 見出し</label>
+      <label value="h3">H3 小見出し</label>
+      <label value="h4">H4 順見出し</label>
+      <!-- <label value="p">P 段落</label> -->
+      <label value="">無し</label>
+    </div>
   </li>
 
   <li data-name="bold">

@@ -1,6 +1,12 @@
 
 
 export class Asset{
+  constructor(options){
+    Asset.options = options || {}
+  }
+  static options = {}
+  static current_iframe_select_start = null
+
   static get root(){
     return document.getElementById("mynt_wysiwig")
   }
@@ -14,10 +20,21 @@ export class Asset{
   static get current_input_elm(){
     switch(Asset.current_input_type){
       case "wysiwig":
-        return Asset.iframe.contentDocument.body
+        return Asset.iframe_root
       case "html":
         return Asset.textarea
     }
+  }
+
+  static get iframe_root(){
+    // if(Asset.options.iframe_root){
+    //   // console.log(Asset.iframe.contentDocument.body.innerHTML)
+    //   return Asset.iframe.contentDocument.body.querySelector(Asset.options.iframe_root)
+    // }
+    // else{
+    //   return Asset.iframe.contentDocument.body
+    // }
+    return Asset.iframe.contentDocument.body
   }
 
   static get current_input_value(){
@@ -42,7 +59,7 @@ export class Asset{
   }
 
   static get inner_iframe(){
-    return Asset.iframe.contentDocument.body.innerHTML
+    return Asset.iframe_root.innerHTML
   }
 
   static get inner_textarea(){
@@ -51,5 +68,29 @@ export class Asset{
 
   static get control_root(){
     return Asset.root.querySelector(`.control`)
+  }
+
+  static get_iframe_select_start_tag(tag){
+    if(!Asset.current_iframe_select_start){return}
+    
+    switch(Asset.current_iframe_select_start.nodeType){
+      // tag
+      case 1:
+        if(tag){
+          return Asset.current_iframe_select_start.querySelector(`:scope > ${tag}`)
+        }
+        else{
+          return Asset.current_iframe_select_start.firstElementChild
+        }
+
+      // text
+      case 3:
+        if(tag){
+          return Asset.current_iframe_select_start.parentNode.closest(tag)
+        }
+        else{
+          return Asset.current_iframe_select_start.parentNode
+        }
+    }
   }
 }

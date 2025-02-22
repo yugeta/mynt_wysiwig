@@ -5,6 +5,7 @@ export class Setting{
   constructor(){
     // console.log(Setting.load())
     const datas = Setting.load()
+    // console.log(datas)
     if(!datas){return}
     for(const key in datas){
       switch(key){
@@ -18,7 +19,7 @@ export class Setting{
 
 
   set_input_type(type){
-    const label = Asset.root.querySelector(`.control li[data-name="input_types"] .pulldown-list label[class="${type}"]`)
+    const label = Asset.root.querySelector(`.control li[data-name="input_types"] .pulldown-list label[value="${type}"]`)
     if(!label){return}
     label.click()
   }
