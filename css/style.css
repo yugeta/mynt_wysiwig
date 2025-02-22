@@ -1,0 +1,16 @@
+@import "inputs.css";
+@import "control.css";
+
+#mynt_wysiwig,
+#mynt_wysiwig *,
+#mynt_wysiwig *:before, 
+#mynt_wysiwig *:after{
+  -webkit-box-sizing  : border-box;
+     -moz-box-sizing  : border-box;
+       -o-box-sizing  : border-box;
+      -ms-box-sizing  : border-box;
+          box-sizing  : border-box;
+}
+
+
+
