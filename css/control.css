@@ -1,3 +1,11 @@
+/**
+ * Common
+ */
+
+#mynt_wysiwig ul.control .flex-center{
+  gap:5px;
+}
+
 
 #mynt_wysiwig ul.control,
 #mynt_wysiwig ul.control ul,
@@ -88,6 +96,23 @@
 
 #mynt_wysiwig ul.control .pulldown-list > *[data-status="selected"]{
   background-color:#def;
+}
+
+#mynt_wysiwig [name="text_color"],
+#mynt_wysiwig [name="highlight"],
+#mynt_wysiwig [name="page_color"]{
+  padding:0;
+  width:0px;
+  height:20px;
+  opacity:0;
+}
+#mynt_wysiwig ul.control li[data-name="text_color"],
+#mynt_wysiwig ul.control li[data-name="text_color"] label,
+#mynt_wysiwig ul.control li[data-name="highlight"],
+#mynt_wysiwig ul.control li[data-name="highlight"] label,
+#mynt_wysiwig ul.control li[data-name="page_color"],
+#mynt_wysiwig ul.control li[data-name="page_color"] label{
+  gap:0;
 }
 
 

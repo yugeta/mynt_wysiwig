@@ -4,8 +4,8 @@
  * 現在モード → もう一歩のモードへのコピー
  */
 
-import { Asset }   from "./asset.js"
-import { Storage } from "./storage.js"
+import { Asset }   from "../asset.js"
+import { Storage } from "../storage.js"
 
 export class TextSync{
   constructor(){

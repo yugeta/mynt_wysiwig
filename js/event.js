@@ -1,7 +1,7 @@
 import { Apply }    from "./apply.js"
 import { Asset }    from "./asset.js"
 import { Setting } from "./setting.js"
-import { TextSync } from "./text_sync.js"
+import { TextSync } from "./apply/text_sync.js"
 
 export class Event{
   constructor(){
@@ -20,6 +20,11 @@ export class Event{
     if(Asset.textarea){
       Asset.textarea.addEventListener("keydown" , this.keydown.bind(this))
       Asset.textarea.addEventListener("input" , this.input.bind(this))
+    }
+
+    const color_pickers = Asset.control_root.querySelectorAll(`input[type="color"]`)
+    for(const color_picker of color_pickers){
+      color_picker.addEventListener("input", this.change_color_picker.bind(this))
     }
   }
 
@@ -51,6 +56,7 @@ export class Event{
     // ツールボタン
     else if(e.target.closest("ul.control > li:not(:has(.pulldown-list))")){
       const target = e.target.closest("ul.control > li")
+      if(target.getAttribute("data-apply") === "no"){return}
       const name = target.getAttribute("data-name")
       new Apply(name)
     }
@@ -135,5 +141,13 @@ export class Event{
         list.removeAttribute("data-status")
       }
     }
+  }
+
+  change_color_picker(e){
+    if(e.target.tagName.toLowerCase() !== "input"){return}
+    const name  = e.target.name
+    const value = e.target.value
+    // console.log(name, value)
+    new Apply(name, value)
   }
 }
