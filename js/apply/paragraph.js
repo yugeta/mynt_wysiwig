@@ -1,4 +1,5 @@
 import { Asset }    from "../asset.js"
+import { Common }   from "./common.js"
 import { EjectTag } from "./eject_tag.js"
 
 export class Paragraph{
@@ -8,8 +9,7 @@ export class Paragraph{
         this.insert_block_iframe(value)
       }
       else{
-        const target_tag = Asset.get_iframe_select_start_tag()
-        // this.eject_tag_iframe(target_tag)
+        const target_tag = Common.get_iframe_select_start_tag()
         new EjectTag(target_tag)
       }
     }

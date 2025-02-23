@@ -6,15 +6,9 @@ export class Control{
       this.resolve = resolve
       this.reject  = reject
       this.load("control.html")
-      // this.load("control_tag.html")
-      // this.load("control_wysiwig.html")
       this.view()
     })
   }
-
-  // get input_type_value(){
-  //   return `#mynt_wysiwig .control input[name="input_type"]:checked`
-  // }
   
   html = []
 

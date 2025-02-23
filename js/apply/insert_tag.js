@@ -1,26 +1,34 @@
 import { Asset }    from "../asset.js"
+import { Common }   from "./common.js"
 import { EjectTag } from "./eject_tag.js"
 
 export class InsertTag{
   constructor(options){
     switch(Asset.current_input_type){
       case "wysiwig":
-        // タグ削除
-        const target_tag = Asset.get_iframe_select_start_tag(options.tag)
-        if(target_tag){
-          // this.eject_tag_iframe(target_tag)
-          new EjectTag(target_tag)
-        }
-        // タグ追加（挿入）
-        else{
-          this.insert_tag_iframe(options.tag, options.attribute)
-        }
+        this.wysiwig(options)
         break
 
       case "html":
-        this.insert_tag_textarea(options.tag, options.attribute)
+        this.textarea(options)
         break
     }
+  }
+
+  wysiwig(options){
+    // タグ削除
+    const target_tag = Common.get_iframe_select_start_tag(options.tag)
+    if(target_tag){
+      new EjectTag(target_tag)
+    }
+    // タグ追加（挿入）
+    else{
+      this.insert_tag_iframe(options.tag, options.attribute)
+    }
+  }
+
+  textarea(options){
+    this.insert_tag_textarea(options.tag, options.attribute)
   }
 
   // 選択箇所にタグを挿入

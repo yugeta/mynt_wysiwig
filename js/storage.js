@@ -1,4 +1,4 @@
-import { Base64Hash } from "./base64_hash.js"
+import { Base64Hash } from "./lib/base64_hash.js"
 
 export class Storage{
   constructor(key){

@@ -1,7 +1,9 @@
 import { Apply }    from "./apply.js"
 import { Asset }    from "./asset.js"
-import { Setting } from "./setting.js"
+import { Setting }  from "./setting.js"
+import { Common as ApplyCommon } from "./apply/common.js"
 import { TextSync } from "./apply/text_sync.js"
+import { Color }    from "./lib/color.js"
 
 export class Event{
   constructor(){
@@ -25,6 +27,7 @@ export class Event{
     const color_pickers = Asset.control_root.querySelectorAll(`input[type="color"]`)
     for(const color_picker of color_pickers){
       color_picker.addEventListener("input", this.change_color_picker.bind(this))
+      color_picker.addEventListener("click", this.click_color_picker.bind(this))
     }
   }
 
@@ -49,8 +52,10 @@ export class Event{
         case "paragraph":
           new Apply(name, value)
           break
+        // case "text_color":
+        //   console.log(111)
+        //   break
       }
-      
     }
 
     // ツールボタン
@@ -69,7 +74,6 @@ export class Event{
       const name = li.getAttribute("data-name")
       this.list_view_selected(li, name)
     }
-
 
     // プルダウン（表示ボタン）以外をクリックしたら、プルダウン項目を削除する。
     if(!e.target.closest(".pulldown-list label") 
@@ -91,6 +95,24 @@ export class Event{
         }
       }
     }
+
+    // // color set
+    // const li = e.target.closest("li")
+    // console.log(li)
+    // if(li && li.querySelector(`input[type="color"]`)){
+    //   console.log(111)
+    //   if(Asset.current_input_type === "wysiwig" && Asset.current_iframe_select_start){
+        
+    //     const input_colot = li.querySelector(`input[type="color"]`)
+    //     const name = li.getAttribute("data-name")
+    //     switch(name){
+    //       case "text_color":
+    //         const value = window.getComputedStyle(Asset.current_iframe_select_start).color
+    //         console.log(value)
+    //       break
+    //     }
+    //   }
+    // }
   }
 
   keydown(e){
@@ -117,7 +139,7 @@ export class Event{
     if(Asset.current_input_type === "wysiwig"){
       switch(name){
         case "font_size":
-          const target_tag = Asset.get_iframe_select_start_tag("span")
+          const target_tag = ApplyCommon.get_iframe_select_start_tag("span")
           if(target_tag){
             const value = target_tag.style.getPropertyValue("font-size")
             this.select_list_item(li, value)
@@ -147,7 +169,15 @@ export class Event{
     if(e.target.tagName.toLowerCase() !== "input"){return}
     const name  = e.target.name
     const value = e.target.value
-    // console.log(name, value)
     new Apply(name, value)
+  }
+
+  click_color_picker(e){
+    if(e.target.tagName.toLowerCase() !== "input"){return}
+    const target_tag = ApplyCommon.get_iframe_select_start_tag()
+    // console.log(target_tag)
+    if(!target_tag){return}
+    const color = Color.get_text_color(target_tag, "hex")
+    e.target.value = color
   }
 }

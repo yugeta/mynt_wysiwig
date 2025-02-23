@@ -11,15 +11,22 @@ export class TextSync{
   constructor(){
     switch(Asset.current_input_type){
       case "wysiwig":
-        Asset.textarea.value = Asset.inner_iframe
+        this.wysiwig()
         break
 
       case "html":
-        // Asset.iframe.contentDocument.body.innerHTML = Asset.inner_textarea
-        Asset.iframe_root.innerHTML = Asset.inner_textarea
+        this.textarea()
         break
     }
     this.save_storage()
+  }
+
+  wysiwig(){
+    Asset.textarea.value = Asset.inner_iframe
+  }
+
+  textarea(){
+    Asset.iframe_root.innerHTML = Asset.inner_textarea
   }
 
   save_storage(){

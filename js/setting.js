@@ -3,9 +3,7 @@ import { Storage } from "./storage.js"
 
 export class Setting{
   constructor(){
-    // console.log(Setting.load())
     const datas = Setting.load()
-    // console.log(datas)
     if(!datas){return}
     for(const key in datas){
       switch(key){

@@ -8,7 +8,6 @@ import { Cache }   from "./cache.js"
 
 export class Construct{
   constructor(options){
-    // Asset.options = options
     new Asset(options)
 
     if(!Asset.root){
