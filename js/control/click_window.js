@@ -47,6 +47,7 @@ export class ClickWindow{
         break
       case "font_size":
       case "paragraph":
+      case "align":
         new Apply(name, value)
         break
     }

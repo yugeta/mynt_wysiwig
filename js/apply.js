@@ -9,6 +9,7 @@ import { DomIndent } from "./apply/dom_indent.js"
 import { Tab }       from "./apply/tab.js"
 import { Highlight } from "./apply/highlight.js"
 import { PageColor } from "./apply/page_color.js"
+import { TextAlign } from "./apply/text_align.js"
 
 export class Apply{
   constructor(name, value){
@@ -42,8 +43,12 @@ export class Apply{
         })
         new Storage().save({page_color: value})
         break
+      case "align":
+        new TextAlign({
+          value : value
+        });break
       default:
-        console.log(name)
+        console.log(name, value)
     }
     new TextSync()
   }
