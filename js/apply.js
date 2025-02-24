@@ -10,6 +10,7 @@ import { Tab }       from "./apply/tab.js"
 import { Highlight } from "./apply/highlight.js"
 import { PageColor } from "./apply/page_color.js"
 import { TextAlign } from "./apply/text_align.js"
+import { ImgUpload } from "./apply/img_upload.js"
 
 export class Apply{
   constructor(name, value){
@@ -45,8 +46,12 @@ export class Apply{
         break
       case "align":
         new TextAlign({
-          value : value
+          value : value,
+          image_dir : Asset.options.image_dir || null,
         });break
+      case "img_upload":
+        new ImgUpload();break
+
       default:
         console.log(name, value)
     }

@@ -1,16 +1,16 @@
-import { Construct } from "../js/construct.js"
+import { Construct }   from "../js/construct.js"
+import { ImageUpload } from "./module/image_upload.js"
 
 class Main{
   constructor(){
     new Construct({
-      iframe_html : "iframe_index.html",
-      iframe_root : "main",
+      iframe_html  : "iframe_index.html",
+      iframe_root  : "main",
+      // image_upload :((e) => {new ImageUpload(e)}), // 画像アップロードした場合に処理をするcallback関数（type=fileのfilesデータが送られる）
+      image_upload : ImageUpload, // 画像アップロードした場合に処理をするcallback関数（type=fileのfilesデータが送られる）
+      image_dir    : null,
     })
   }
-
-  // get_dir(){
-  //   return import.meta.url.split("/").slice(0,-1).join("/")
-  // }
 }
 
 switch(document.readyState){

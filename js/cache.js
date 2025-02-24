@@ -5,7 +5,7 @@ import { PageColor } from "./apply/page_color.js"
 export class Cache{
   constructor(){
     const data = new Storage().load()
-    console.log("storage", data)
+    // console.log("storage", data)
     if(data && data["html"]){
       this.revival(data["html"])
       this.page_color(data["page_color"])
