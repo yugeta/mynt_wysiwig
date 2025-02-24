@@ -11,21 +11,30 @@ export class DomIndent{
   format(node, indent = 0){
     let result = ""
     const indentStr = "  ".repeat(indent) // インデント用スペース
+
     node.childNodes.forEach(child => {
       if (child.nodeType === Node.TEXT_NODE) {
-        // テキストノードの処理（空白のみは無視）
+        // テキストノード（空白のみは無視）
         const text = child.textContent.trim()
         if (text) result += `${indentStr}${text}\n`
       } else if (child.nodeType === Node.ELEMENT_NODE) {
-        // 開始タグ
+        // 開始タグの構築
         const tagName = child.tagName.toLowerCase()
-        result += `${indentStr}<${tagName}>\n`
+        const attributes = Array.from(child.attributes)
+          .map(attr => `${attr.name}="${attr.value}"`)
+          .join(" ")
+
+        const openTag = attributes ? `<${tagName} ${attributes}>` : `<${tagName}>`
+        result += `${indentStr}${openTag}\n`
+
         // 子要素を再帰的に処理
         result += this.format(child, indent + 1)
-        // 終了タグ
+
+        // 閉じタグ
         result += `${indentStr}</${tagName}>\n`
       }
-    })
+    });
+
     return result
   }
 }
