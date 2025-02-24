@@ -1,5 +1,3 @@
-
-
 export class Asset{
   constructor(options){
     Asset.options = options || {}

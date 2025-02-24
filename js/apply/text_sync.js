@@ -6,6 +6,7 @@
 
 import { Asset }   from "../asset.js"
 import { Storage } from "../storage.js"
+import { Color }   from "../lib//color.js"
 
 export class TextSync{
   constructor(){
@@ -22,6 +23,7 @@ export class TextSync{
   }
 
   wysiwig(){
+    // Asset.textarea.value = Color.html_rgb2hex(Asset.inner_iframe)
     Asset.textarea.value = Asset.inner_iframe
   }
 

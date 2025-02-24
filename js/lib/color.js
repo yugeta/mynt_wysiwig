@@ -4,9 +4,37 @@
 
 export class Color{
 
-  // 文字色の取得
+  // 対象要素の文字色の取得
   static get_text_color(elm, type){
     const rgb = window.getComputedStyle(elm).color;
+    
+    switch(type){
+      case "hex":
+        return this.rgb_to_hex(rgb)
+
+      case "rgb":
+      default:
+        return rgb
+    }
+  }
+
+  // 対象要素の背景色の取得
+  static get_background_color(elm, type){
+    const rgb = window.getComputedStyle(elm).backgroundColor;
+    
+    switch(type){
+      case "hex":
+        return this.rgb_to_hex(rgb)
+
+      case "rgb":
+      default:
+        return rgb
+    }
+  }
+
+  // ページ背景色の取得
+  static get_page_color(elm, type){
+    const rgb = window.getComputedStyle(elm).backgroundColor;
     
     switch(type){
       case "hex":
@@ -44,5 +72,22 @@ export class Color{
     const b = parseInt(hex.substring(4, 6), 16);
 
     return `rgb(${r}, ${g}, ${b})`;
+  }
+
+  // html内のrgb(***,***,***)文字列をhex文字列に一括変換する。
+  static html_rgb2hex(html){
+    if(!html){return ""}
+    const reg = new RegExp('rgb\(.+?\)','g')
+    const arr = []
+    let res = []
+    while ((res = reg.exec(html)) !== null) {
+      arr.push(res[1])
+    }
+    console.log(arr)
+    // for(let rgb of arr){
+    //   const hex = this.rgb_to_hex(rgb)
+    //   html = html.split(rgb).join(hex)
+    // }
+    return html
   }
 }
