@@ -1,5 +1,5 @@
-import { Asset }    from "./asset.js"
-import { TextSync } from "./apply/text_sync.js"
+import { Asset }        from "./asset.js"
+import { TextSync }     from "./apply/text_sync.js"
 import { ClickWindow }  from "./control/click_window.js"
 import { Keydown }      from "./control/keydown.js"
 import { ColorPicker }  from "./control/color_picker.js"

@@ -5,8 +5,16 @@ export class DomIndent{
     const html = Asset.textarea.value
     const parser = new DOMParser()
     const doc = parser.parseFromString(html, "text/html") // HTML をパース
+
+    this.voidElements = new Set([
+      "area", "base", "br", "col", "embed", "hr", "img", "input",
+      "link", "meta", "param", "source", "track", "wbr"
+    ])
+
     Asset.textarea.value = this.format(doc.body).trim()
   }
+
+  voidElements = null
 
   format(node, indent = 0){
     let result = ""
@@ -24,14 +32,17 @@ export class DomIndent{
           .map(attr => `${attr.name}="${attr.value}"`)
           .join(" ")
 
-        const openTag = attributes ? `<${tagName} ${attributes}>` : `<${tagName}>`
-        result += `${indentStr}${openTag}\n`
-
-        // 子要素を再帰的に処理
-        result += this.format(child, indent + 1)
-
-        // 閉じタグ
-        result += `${indentStr}</${tagName}>\n`
+        // void 要素の場合、自己閉じタグとして処理
+        if (this.voidElements.has(tagName)) {
+          const selfClosingTag = attributes ? `<${tagName} ${attributes} />` : `<${tagName} />`;
+          result += `${indentStr}${selfClosingTag}\n`
+        } else {
+          // 通常の要素 (開始タグ + 子要素 + 閉じタグ)
+          const openTag = attributes ? `<${tagName} ${attributes}>` : `<${tagName}>`;
+          result += `${indentStr}${openTag}\n`
+          result += this.format(child, indent + 1)
+          result += `${indentStr}</${tagName}>\n`
+        }
       }
     });
 

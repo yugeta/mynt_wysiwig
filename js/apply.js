@@ -7,6 +7,7 @@ import { FontSize }  from "./apply/font_size.js"
 import { DomIndent } from "./apply/dom_indent.js"
 import { Tab }       from "./apply/tab.js"
 import { Highlight } from "./apply/highlight.js"
+import { PageColor } from "./apply/page_color.js"
 
 export class Apply{
   constructor(name, value){
@@ -32,6 +33,10 @@ export class Apply{
         });break
       case "highlight":
         new Highlight({
+          value : value
+        });break
+      case "page_color":
+        new PageColor({
           value : value
         });break
       default:
