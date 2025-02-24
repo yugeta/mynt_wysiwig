@@ -24,10 +24,12 @@
  * Textarea
  */
 #mynt_wysiwig:has(#input_html:checked) textarea{
+  --page-color: #FFF;
+
   padding:5px;
   --size : 1.4em;
   line-height: var(--size);
-  background: linear-gradient(to bottom, #eee 1px, white 1px);
+  background: linear-gradient(to bottom, #eee 1px, var(--page-color) 1px);
   background-size: 100% var(--size);
   background-origin: content-box;
   background-attachment: local;

@@ -1,4 +1,5 @@
 import { Asset }     from "./asset.js"
+import { Storage }   from "./storage.js"
 import { TextSync }  from "./apply/text_sync.js"
 import { InsertTag } from "./apply/insert_tag.js"
 import { TextColor } from "./apply/text_color.js"
@@ -38,7 +39,9 @@ export class Apply{
       case "page_color":
         new PageColor({
           value : value
-        });break
+        })
+        new Storage().save({page_color: value})
+        break
       default:
         console.log(name)
     }

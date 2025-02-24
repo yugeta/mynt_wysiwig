@@ -13,13 +13,6 @@ export class ColorPicker{
 
       case "click":
         this.click(event);break
-        // if(name === "page_color"){
-        //   this.click_page_color(event)
-        // }
-        // else{
-        //   this.click(event)
-        // }
-        // break
     }
   }
 
@@ -38,12 +31,4 @@ export class ColorPicker{
     e.target.value = this.color
   }
 
-  // click_page_color(e){
-  //   switch(Asset.current_input_type){
-  //     case "wysiwig":
-  //       return Asset.iframe.style.setProperty("background-color", this.color, "")
-  //     case "html":
-  //       return Asset.textarea.style.setProperty("background-color", this.color, "")
-  //   }
-  // }
 }

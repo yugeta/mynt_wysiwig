@@ -40,6 +40,7 @@ export class Iframe{
   }
   make_textarea(){
     const textarea = document.createElement("textarea")
+    textarea.style.setProperty("--page-color","#FFF","")
     Asset.root.appendChild(textarea)
     // textarea.placeholder = "HTMLタグで入力してください。"
   }
