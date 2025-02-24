@@ -120,7 +120,7 @@
 /**
  *
  */
- #mynt_wysiwig ul.control > * .click-view-list > svg{
+#mynt_wysiwig ul.control > * .click-view-list > svg{
   display:none;
 }
 #mynt_wysiwig #input_wysiwig:checked ~ .click-view-list svg.wysiwig,
@@ -134,4 +134,11 @@
   display:block;
 }
 
+/**
+ * View hidden
+ */
+#mynt_wysiwig:has(#input_wysiwig[name="input_type"]:checked) ul.control > li:not(.wysiwig),
+#mynt_wysiwig:has(#input_html[name="input_type"]:checked) ul.control > li:not(.html){
+  display:none;
+}
 
