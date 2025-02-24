@@ -2,7 +2,7 @@ import { Asset }   from "./asset.js"
 import { Iframe }  from "./iframe.js"
 import { Control } from "./control.js"
 import { Css }     from "./css.js"
-import { Event }   from "./event.js"
+// import { Event }   from "./event.js"
 import { Setting } from "./setting.js"
 import { Cache }   from "./cache.js"
 
@@ -17,7 +17,7 @@ export class Construct{
 
     new Css()
     new Iframe().promise.then(()=>{
-      new Event()
+      // new Event()
       new Cache()
     })
     new Control().promise.then(()=>{
