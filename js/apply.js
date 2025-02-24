@@ -6,6 +6,7 @@ import { Paragraph } from "./apply/paragraph.js"
 import { FontSize }  from "./apply/font_size.js"
 import { DomIndent } from "./apply/dom_indent.js"
 import { Tab }       from "./apply/tab.js"
+import { Highlight } from "./apply/highlight.js"
 
 export class Apply{
   constructor(name, value){
@@ -27,6 +28,10 @@ export class Apply{
         new Paragraph(value);break
       case "text_color":
         new TextColor({
+          value : value
+        });break
+      case "highlight":
+        new Highlight({
           value : value
         });break
       default:
